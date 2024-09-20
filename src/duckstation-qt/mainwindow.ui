@@ -126,12 +126,6 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionGitHubRepository"/>
-    <addaction name="actionIssueTracker"/>
-    <addaction name="actionDiscordServer"/>
-    <addaction name="separator"/>
-    <addaction name="actionCheckForUpdates"/>
-    <addaction name="separator"/>
     <addaction name="actionViewThirdPartyNotices"/>
     <addaction name="actionAboutQt"/>
     <addaction name="actionAbout"/>
@@ -421,41 +415,6 @@
   <action name="actionResolution_Scale">
    <property name="text">
     <string>Resolution Scale</string>
-   </property>
-  </action>
-  <action name="actionGitHubRepository">
-   <property name="icon">
-    <iconset resource="resources/duckstation-qt.qrc">
-     <normaloff>:/icons/github.png</normaloff>:/icons/github.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;GitHub Repository...</string>
-   </property>
-  </action>
-  <action name="actionIssueTracker">
-   <property name="icon">
-    <iconset resource="resources/duckstation-qt.qrc">
-     <normaloff>:/icons/IssueTracker.png</normaloff>:/icons/IssueTracker.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Issue Tracker...</string>
-   </property>
-  </action>
-  <action name="actionDiscordServer">
-   <property name="icon">
-    <iconset resource="resources/duckstation-qt.qrc">
-     <normaloff>:/icons/discord.png</normaloff>:/icons/discord.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Discord Server...</string>
-   </property>
-  </action>
-  <action name="actionCheckForUpdates">
-   <property name="icon">
-    <iconset theme="download-2-line"/>
-   </property>
-   <property name="text">
-    <string>Check for &amp;Updates...</string>
    </property>
   </action>
   <action name="actionViewThirdPartyNotices">

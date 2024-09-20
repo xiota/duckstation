@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: (GPL-3.0 OR CC-BY-NC-ND-4.0)
 
 #include "qthost.h"
-#include "autoupdaterdialog.h"
 #include "displaywidget.h"
 #include "logwindow.h"
 #include "mainwindow.h"
@@ -119,7 +118,6 @@ static bool s_nogui_mode = false;
 static bool s_start_fullscreen_ui = false;
 static bool s_start_fullscreen_ui_fullscreen = false;
 static bool s_run_setup_wizard = false;
-static bool s_cleanup_after_update = false;
 
 EmuThread* g_emu_thread = nullptr;
 
@@ -2434,11 +2432,6 @@ bool QtHost::ParseCommandLineParametersAndInitializeConfig(QApplication& app,
         InitializeEarlyConsole();
         continue;
       }
-      else if (CHECK_ARG("-updatecleanup"))
-      {
-        s_cleanup_after_update = AutoUpdaterDialog::isSupported();
-        continue;
-      }
 #ifdef ENABLE_RAINTEGRATION
       else if (CHECK_ARG("-raintegration"))
       {
@@ -2558,15 +2551,8 @@ int main(int argc, char* argv[])
   if (!QtHost::ParseCommandLineParametersAndInitializeConfig(app, autoboot))
     return EXIT_FAILURE;
 
-  if (!AutoUpdaterDialog::warnAboutUnofficialBuild())
-    return EXIT_FAILURE;
-
   if (!QtHost::EarlyProcessStartup())
     return EXIT_FAILURE;
-
-  // Remove any previous-version remanants.
-  if (s_cleanup_after_update)
-    AutoUpdaterDialog::cleanupAfterUpdate();
 
   // Set theme before creating any windows.
   QtHost::UpdateApplicationTheme();
@@ -2606,11 +2592,9 @@ int main(int argc, char* argv[])
   else
     s_start_fullscreen_ui_fullscreen = false;
 
-  // Skip the update check if we're booting a game directly.
+  // Boot a game directly.
   if (autoboot)
     g_emu_thread->bootSystem(std::move(autoboot));
-  else if (!s_nogui_mode)
-    main_window->startupUpdateCheck();
 
   // This doesn't return until we exit.
   result = app.exec();

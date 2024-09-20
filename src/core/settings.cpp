@@ -1991,7 +1991,6 @@ static const char* s_log_filters[] = {
   "AnalogController",
   "AnalogJoystick",
   "AudioStream",
-  "AutoUpdaterDialog",
   "BIOS",
   "Bus",
   "ByteStream",

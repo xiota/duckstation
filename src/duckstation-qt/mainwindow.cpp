@@ -4,7 +4,6 @@
 #include "mainwindow.h"
 #include "aboutdialog.h"
 #include "achievementlogindialog.h"
-#include "autoupdaterdialog.h"
 #include "cheatmanagerwindow.h"
 #include "coverdownloaddialog.h"
 #include "debuggerwindow.h"
@@ -1406,21 +1405,6 @@ void MainWindow::onViewGamePropertiesActionTriggered()
   });
 }
 
-void MainWindow::onGitHubRepositoryActionTriggered()
-{
-  QtUtils::OpenURL(this, "https://github.com/stenzek/duckstation/");
-}
-
-void MainWindow::onIssueTrackerActionTriggered()
-{
-  QtUtils::OpenURL(this, "https://www.duckstation.org/issues.html");
-}
-
-void MainWindow::onDiscordServerActionTriggered()
-{
-  QtUtils::OpenURL(this, "https://www.duckstation.org/discord.html");
-}
-
 void MainWindow::onAboutActionTriggered()
 {
   AboutDialog about(this);
@@ -2100,14 +2084,8 @@ void MainWindow::connectSignals()
   connect(m_ui.actionViewGameGrid, &QAction::triggered, this, &MainWindow::onViewGameGridActionTriggered);
   connect(m_ui.actionViewSystemDisplay, &QAction::triggered, this, &MainWindow::onViewSystemDisplayTriggered);
   connect(m_ui.actionViewGameProperties, &QAction::triggered, this, &MainWindow::onViewGamePropertiesActionTriggered);
-  connect(m_ui.actionGitHubRepository, &QAction::triggered, this, &MainWindow::onGitHubRepositoryActionTriggered);
-  connect(m_ui.actionIssueTracker, &QAction::triggered, this, &MainWindow::onIssueTrackerActionTriggered);
-  connect(m_ui.actionDiscordServer, &QAction::triggered, this, &MainWindow::onDiscordServerActionTriggered);
-  connect(m_ui.actionViewThirdPartyNotices, &QAction::triggered, this,
-          [this]() { AboutDialog::showThirdPartyNotices(this); });
   connect(m_ui.actionAboutQt, &QAction::triggered, qApp, &QApplication::aboutQt);
   connect(m_ui.actionAbout, &QAction::triggered, this, &MainWindow::onAboutActionTriggered);
-  connect(m_ui.actionCheckForUpdates, &QAction::triggered, this, &MainWindow::onCheckForUpdatesActionTriggered);
   connect(m_ui.actionMemoryCardEditor, &QAction::triggered, this, &MainWindow::onToolsMemoryCardEditorTriggered);
   connect(m_ui.actionMemoryScanner, &QAction::triggered, this, &MainWindow::onToolsMemoryScannerTriggered);
   connect(m_ui.actionCoverDownloader, &QAction::triggered, this, &MainWindow::onToolsCoverDownloaderTriggered);
@@ -2574,14 +2552,6 @@ void MainWindow::resizeEvent(QResizeEvent* event)
     g_log_window->reattachToMainWindow();
 }
 
-void MainWindow::startupUpdateCheck()
-{
-  if (!Host::GetBaseBoolSettingValue("AutoUpdater", "CheckAtStartup", true))
-    return;
-
-  checkForUpdates(false);
-}
-
 void MainWindow::updateDebugMenuVisibility()
 {
   const bool visible = QtHost::ShouldShowDebugOptions();
@@ -2687,14 +2657,6 @@ std::optional<WindowInfo> MainWindow::getWindowInfo()
     return QtUtils::GetWindowInfoForWidget(widget);
   else
     return std::nullopt;
-}
-
-void MainWindow::onCheckForUpdatesActionTriggered()
-{
-  // Wipe out the last version, that way it displays the update if we've previously skipped it.
-  Host::DeleteBaseSettingValue("AutoUpdater", "LastVersion");
-  Host::CommitBaseSettingChanges();
-  checkForUpdates(true);
 }
 
 void MainWindow::openMemoryCardEditor(const QString& card_a_path, const QString& card_b_path)
@@ -2873,59 +2835,9 @@ void MainWindow::onSettingsTriggeredFromToolbar()
     doSettings();
 }
 
-void MainWindow::checkForUpdates(bool display_message)
-{
-  if (!AutoUpdaterDialog::isSupported())
-  {
-    if (display_message)
-    {
-      QMessageBox mbox(this);
-      mbox.setWindowTitle(tr("Updater Error"));
-      mbox.setWindowModality(Qt::WindowModal);
-      mbox.setTextFormat(Qt::RichText);
-
-      QString message;
-      if (!AutoUpdaterDialog::isOfficialBuild())
-      {
-        message =
-          tr("<p>Sorry, you are trying to update a DuckStation version which is not an official GitHub release. To "
-             "prevent incompatibilities, the auto-updater is only enabled on official builds.</p>"
-             "<p>Please download an official release from from <a "
-             "href=\"https://www.duckstation.org/\">duckstation.org</a>.</p>");
-      }
-      else
-      {
-        message = tr("Automatic updating is not supported on the current platform.");
-      }
-
-      mbox.setText(message);
-      mbox.setIcon(QMessageBox::Critical);
-      mbox.exec();
-    }
-
-    return;
-  }
-
-  if (m_auto_updater_dialog)
-    return;
-
-  m_auto_updater_dialog = new AutoUpdaterDialog(this);
-  connect(m_auto_updater_dialog, &AutoUpdaterDialog::updateCheckCompleted, this, &MainWindow::onUpdateCheckComplete);
-  m_auto_updater_dialog->queueUpdateCheck(display_message);
-}
-
 void* MainWindow::getNativeWindowId()
 {
   return (void*)winId();
-}
-
-void MainWindow::onUpdateCheckComplete()
-{
-  if (!m_auto_updater_dialog)
-    return;
-
-  m_auto_updater_dialog->deleteLater();
-  m_auto_updater_dialog = nullptr;
 }
 
 MainWindow::SystemLock MainWindow::pauseAndLockSystem()

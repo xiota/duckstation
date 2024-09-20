@@ -23,9 +23,6 @@ set(SRCS
   audiosettingswidget.h
   audiosettingswidget.ui
   audiostretchsettingsdialog.ui
-  autoupdaterdialog.cpp
-  autoupdaterdialog.h
-  autoupdaterdialog.ui
   biossettingswidget.cpp
   biossettingswidget.h
   biossettingswidget.ui

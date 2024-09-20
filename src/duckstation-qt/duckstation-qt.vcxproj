@@ -7,7 +7,6 @@
     <ClCompile Include="achievementlogindialog.cpp" />
     <ClCompile Include="advancedsettingswidget.cpp" />
     <ClCompile Include="audiosettingswidget.cpp" />
-    <ClCompile Include="autoupdaterdialog.cpp" />
     <ClCompile Include="biossettingswidget.cpp" />
     <ClCompile Include="cheatmanagerwindow.cpp" />
     <ClCompile Include="cheatcodeeditordialog.cpp" />
@@ -72,7 +71,6 @@
     <QtMoc Include="qtprogresscallback.h" />
     <QtMoc Include="inputbindingdialog.h" />
     <QtMoc Include="gamelistmodel.h" />
-    <QtMoc Include="autoupdaterdialog.h" />
     <QtMoc Include="debuggermodels.h" />
     <QtMoc Include="debuggerwindow.h" />
     <QtMoc Include="achievementsettingswidget.h" />
@@ -150,9 +148,6 @@
     <QtUi Include="inputbindingdialog.ui">
       <FileType>Document</FileType>
     </QtUi>
-    <QtUi Include="autoupdaterdialog.ui">
-      <FileType>Document</FileType>
-    </QtUi>
     <QtUi Include="achievementsettingswidget.ui">
       <FileType>Document</FileType>
     </QtUi>
@@ -221,7 +216,6 @@
     <ClCompile Include="$(IntDir)moc_achievementlogindialog.cpp" />
     <ClCompile Include="$(IntDir)moc_achievementsettingswidget.cpp" />
     <ClCompile Include="$(IntDir)moc_audiosettingswidget.cpp" />
-    <ClCompile Include="$(IntDir)moc_autoupdaterdialog.cpp" />
     <ClCompile Include="$(IntDir)moc_advancedsettingswidget.cpp" />
     <ClCompile Include="$(IntDir)moc_biossettingswidget.cpp" />
     <ClCompile Include="$(IntDir)moc_cheatmanagerwindow.cpp" />

@@ -27,7 +27,6 @@ class QProgressBar;
 class MainWindow;
 class GameListWidget;
 class EmuThread;
-class AutoUpdaterDialog;
 class MemoryCardEditorWindow;
 class CheatManagerWindow;
 class DebuggerWindow;
@@ -78,9 +77,6 @@ public:
   explicit MainWindow();
   ~MainWindow();
 
-  /// Performs update check if enabled in settings.
-  void startupUpdateCheck();
-
   /// Opens memory card editor with the specified paths.
   void openMemoryCardEditor(const QString& card_a_path, const QString& card_b_path);
 
@@ -116,7 +112,6 @@ public Q_SLOTS:
   void checkForSettingChanges();
   std::optional<WindowInfo> getWindowInfo();
 
-  void checkForUpdates(bool display_message);
   void recreate();
 
   void* getNativeWindowId();
@@ -168,11 +163,7 @@ private Q_SLOTS:
   void onViewGameGridActionTriggered();
   void onViewSystemDisplayTriggered();
   void onViewGamePropertiesActionTriggered();
-  void onGitHubRepositoryActionTriggered();
-  void onIssueTrackerActionTriggered();
-  void onDiscordServerActionTriggered();
   void onAboutActionTriggered();
-  void onCheckForUpdatesActionTriggered();
   void onToolsMemoryCardEditorTriggered();
   void onToolsMemoryScannerTriggered();
   void onToolsCoverDownloaderTriggered();
@@ -185,8 +176,6 @@ private Q_SLOTS:
   void onGameListSelectionChanged();
   void onGameListEntryActivated();
   void onGameListEntryContextMenuRequested(const QPoint& point);
-
-  void onUpdateCheckComplete();
 
   void openCheatManager();
   void openCPUDebugger();
@@ -297,7 +286,6 @@ private:
   SettingsWindow* m_settings_window = nullptr;
   ControllerSettingsWindow* m_controller_settings_window = nullptr;
 
-  AutoUpdaterDialog* m_auto_updater_dialog = nullptr;
   MemoryCardEditorWindow* m_memory_card_editor_window = nullptr;
   CheatManagerWindow* m_cheat_manager_window = nullptr;
   DebuggerWindow* m_debugger_window = nullptr;
