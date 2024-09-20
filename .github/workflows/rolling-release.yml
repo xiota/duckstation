@@ -92,7 +92,6 @@ jobs:
       shell: cmd
       run: |
         del /Q bin\x64\*.pdb bin\x64\*.exp bin\x64\*.lib bin\x64\*.iobj bin\x64\*.ipdb bin\x64\common-tests*
-        rename bin\x64\updater-x64-ReleaseLTCG.exe updater.exe
 
     - name: Create x64 release archive
       shell: cmd

@@ -3,10 +3,6 @@ add_subdirectory(util)
 add_subdirectory(core)
 add_subdirectory(scmversion)
 
-if(WIN32 OR APPLE)
-  add_subdirectory(updater)
-endif()
-
 if(BUILD_NOGUI_FRONTEND)
   add_subdirectory(duckstation-nogui)
 endif()

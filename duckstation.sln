@@ -36,8 +36,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common-tests", "src\common-
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scmversion", "src\scmversion\scmversion.vcxproj", "{075CED82-6A20-46DF-94C7-9624AC9DDBEB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "updater", "src\updater\updater.vcxproj", "{32EEAF44-57F8-4C6C-A6F0-DE5667123DD5}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vixl", "dep\vixl\vixl.vcxproj", "{8906836E-F06E-46E8-B11A-74E5E8C7B8FB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rcheevos", "dep\rcheevos\rcheevos.vcxproj", "{4BA0A6D4-3AE1-42B2-9347-096FD023FF64}"
