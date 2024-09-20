@@ -285,6 +285,9 @@
     <QtUi Include="selectdiscdialog.ui" />
   </ItemGroup>
   <ItemGroup>
+    <Natvis Include="qt5.natvis" />
+  </ItemGroup>
+  <ItemGroup>
     <ResourceCompile Include="duckstation-qt.rc" />
   </ItemGroup>
   <ItemGroup>
