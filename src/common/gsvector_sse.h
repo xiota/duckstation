@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LGPL-3.0+
 //
 // Lightweight wrapper over native SIMD types for cross-platform vector code.
-// Rewritten and NEON+No-SIMD variants added for DuckStation.
+// Rewritten and NEON+No-SIMD variants added for LibreStation.
 //
 
 #pragma once

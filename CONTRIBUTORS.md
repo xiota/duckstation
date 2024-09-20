@@ -1,4 +1,4 @@
-# DuckStation Contributors List
+# LibreStation Contributors List
 
 The following people have contributed to the project in some way, and are credited here.
 

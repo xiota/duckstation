@@ -1323,7 +1323,7 @@ void FullscreenUI::DrawLandingTemplate(ImVec2* menu_pos, ImVec2* menu_size)
       dl->AddImage(s_app_icon_texture.get(), logo_pos, logo_pos + logo_size);
       dl->AddText(heading_font, heading_font->FontSize,
                   ImVec2(logo_pos.x + logo_size.x + LayoutScale(LAYOUT_MENU_BUTTON_X_PADDING), logo_pos.y),
-                  ImGui::GetColorU32(ImGuiCol_Text), "DuckStation");
+                  ImGui::GetColorU32(ImGuiCol_Text), "LibreStation");
     }
 
     // draw time
@@ -1526,7 +1526,7 @@ void FullscreenUI::DrawExitWindow()
       QueueResetFocus(FocusResetType::ViewChanged);
     }
 
-    if (HorizontalMenuItem(GetCachedTexture("fullscreenui/exit.png"), FSUI_CSTR("Exit DuckStation"),
+    if (HorizontalMenuItem(GetCachedTexture("fullscreenui/exit.png"), FSUI_CSTR("Exit LibreStation"),
                            FSUI_CSTR("Completely exits the application, returning you to your desktop.")))
     {
       DoRequestExit();
@@ -4531,7 +4531,7 @@ void FullscreenUI::DrawDisplaySettingsPage()
   MenuHeading(FSUI_CSTR("Capture"));
 
   DrawEnumSetting(bsi, FSUI_CSTR("Screenshot Size"),
-                  FSUI_CSTR("Determines the size of screenshots created by DuckStation."), "Display", "ScreenshotMode",
+                  FSUI_CSTR("Determines the size of screenshots created by LibreStation."), "Display", "ScreenshotMode",
                   Settings::DEFAULT_DISPLAY_SCREENSHOT_MODE, &Settings::ParseDisplayScreenshotMode,
                   &Settings::GetDisplayScreenshotModeName, &Settings::GetDisplayScreenshotModeDisplayName,
                   DisplayScreenshotMode::Count);
@@ -5031,7 +5031,7 @@ void FullscreenUI::DrawAchievementsSettingsPage()
 
   MenuHeading(FSUI_CSTR("Settings"));
   DrawToggleSetting(bsi, FSUI_ICONSTR(ICON_FA_TROPHY, "Enable Achievements"),
-                    FSUI_CSTR("When enabled and logged in, DuckStation will scan for achievements on startup."),
+                    FSUI_CSTR("When enabled and logged in, LibreStation will scan for achievements on startup."),
                     "Cheevos", "Enabled", false);
 
   const bool enabled = bsi->GetBoolValue("Cheevos", "Enabled", false);
@@ -5064,12 +5064,12 @@ void FullscreenUI::DrawAchievementsSettingsPage()
                     FSUI_CSTR("When enabled, each session will behave as if no achievements have been unlocked."),
                     "Cheevos", "EncoreMode", false, enabled);
   DrawToggleSetting(bsi, FSUI_ICONSTR(ICON_FA_STETHOSCOPE, "Spectator Mode"),
-                    FSUI_CSTR("When enabled, DuckStation will assume all achievements are locked and not send any "
+                    FSUI_CSTR("When enabled, LibreStation will assume all achievements are locked and not send any "
                               "unlock notifications to the server."),
                     "Cheevos", "SpectatorMode", false, enabled);
   DrawToggleSetting(
     bsi, FSUI_ICONSTR(ICON_FA_MEDAL, "Test Unofficial Achievements"),
-    FSUI_CSTR("When enabled, DuckStation will list achievements from unofficial sets. These achievements are not "
+    FSUI_CSTR("When enabled, LibreStation will list achievements from unofficial sets. These achievements are not "
               "tracked by RetroAchievements."),
     "Cheevos", "UnofficialTestMode", false, enabled);
 
@@ -5156,7 +5156,7 @@ void FullscreenUI::DrawAdvancedSettingsPage()
                     FSUI_CSTR("Logging"), "LogToConsole", Settings::DEFAULT_LOG_TO_CONSOLE);
   DrawToggleSetting(bsi, FSUI_CSTR("Log To Debug Console"),
                     FSUI_CSTR("Logs messages to the debug console where supported."), "Logging", "LogToDebug", false);
-  DrawToggleSetting(bsi, FSUI_CSTR("Log To File"), FSUI_CSTR("Logs messages to duckstation.log in the user directory."),
+  DrawToggleSetting(bsi, FSUI_CSTR("Log To File"), FSUI_CSTR("Logs messages to librestation.log in the user directory."),
                     "Logging", "LogToFile", false);
 
   MenuHeading(FSUI_CSTR("Debugging Settings"));
@@ -7017,17 +7017,17 @@ void FullscreenUI::DrawAboutWindow()
 {
   ImGui::SetNextWindowSize(LayoutScale(1000.0f, 540.0f));
   ImGui::SetNextWindowPos(ImGui::GetIO().DisplaySize * 0.5f, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-  ImGui::OpenPopup(FSUI_CSTR("About DuckStation"));
+  ImGui::OpenPopup(FSUI_CSTR("About LibreStation"));
 
   ImGui::PushFont(g_large_font);
   ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, LayoutScale(10.0f));
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, LayoutScale(30.0f, 30.0f));
 
-  if (ImGui::BeginPopupModal(FSUI_CSTR("About DuckStation"), &s_about_window_open,
+  if (ImGui::BeginPopupModal(FSUI_CSTR("About LibreStation"), &s_about_window_open,
                              ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize))
   {
     ImGui::TextWrapped("%s",
-                       FSUI_CSTR("DuckStation is a free and open-source simulator/emulator of the Sony PlayStation(TM) "
+                       FSUI_CSTR("LibreStation is a free and open-source simulator/emulator of the Sony PlayStation(TM) "
                                  "console, focusing on playability, speed, and long-term maintainability."));
     ImGui::NewLine();
     ImGui::TextWrapped(FSUI_CSTR("Version: %s"), g_scm_tag_str);
@@ -7043,11 +7043,11 @@ void FullscreenUI::DrawAboutWindow()
 
     BeginMenuButtons();
     if (ActiveButton(FSUI_ICONSTR(ICON_FA_GLOBE, "GitHub Repository"), false))
-      ExitFullscreenAndOpenURL("https://github.com/stenzek/duckstation/");
+      ExitFullscreenAndOpenURL("https://github.com/stenzek/librestation/");
     if (ActiveButton(FSUI_ICONSTR(ICON_FA_COMMENT, "Discord Server"), false))
-      ExitFullscreenAndOpenURL("https://www.duckstation.org/discord.html");
+      ExitFullscreenAndOpenURL("https://www.librestation.org/discord.html");
     if (ActiveButton(FSUI_ICONSTR(ICON_FA_PEOPLE_CARRY, "Contributor List"), false))
-      ExitFullscreenAndOpenURL("https://github.com/stenzek/duckstation/blob/master/CONTRIBUTORS.md");
+      ExitFullscreenAndOpenURL("https://github.com/stenzek/librestation/blob/master/CONTRIBUTORS.md");
 
     if (ActiveButton(FSUI_ICONSTR(ICON_FA_WINDOW_CLOSE, "Close"), false) || WantsToCloseMenu())
     {
@@ -7217,7 +7217,7 @@ TRANSLATE_NOOP("FullscreenUI", "9x (18x Speed)");
 TRANSLATE_NOOP("FullscreenUI", "9x (for 4K)");
 TRANSLATE_NOOP("FullscreenUI", "A resume save state created at %s was found.\n\nDo you want to load this save and continue?");
 TRANSLATE_NOOP("FullscreenUI", "About");
-TRANSLATE_NOOP("FullscreenUI", "About DuckStation");
+TRANSLATE_NOOP("FullscreenUI", "About LibreStation");
 TRANSLATE_NOOP("FullscreenUI", "Account");
 TRANSLATE_NOOP("FullscreenUI", "Accurate Blending");
 TRANSLATE_NOOP("FullscreenUI", "Achievement Notifications");
@@ -7348,7 +7348,7 @@ TRANSLATE_NOOP("FullscreenUI", "Determines the emulated hardware type.");
 TRANSLATE_NOOP("FullscreenUI", "Determines the format that screenshots will be saved/compressed with.");
 TRANSLATE_NOOP("FullscreenUI", "Determines the position on the screen when black borders must be added.");
 TRANSLATE_NOOP("FullscreenUI", "Determines the rotation of the simulated TV screen.");
-TRANSLATE_NOOP("FullscreenUI", "Determines the size of screenshots created by DuckStation.");
+TRANSLATE_NOOP("FullscreenUI", "Determines the size of screenshots created by LibreStation.");
 TRANSLATE_NOOP("FullscreenUI", "Determines whether a prompt will be displayed to confirm shutting down the emulator/game when the hotkey is pressed.");
 TRANSLATE_NOOP("FullscreenUI", "Determines which algorithm is used to convert interlaced frames to progressive for display on your system.");
 TRANSLATE_NOOP("FullscreenUI", "Device Settings");
@@ -7372,7 +7372,7 @@ TRANSLATE_NOOP("FullscreenUI", "Downsamples the rendered image prior to displayi
 TRANSLATE_NOOP("FullscreenUI", "Downsampling");
 TRANSLATE_NOOP("FullscreenUI", "Downsampling Display Scale");
 TRANSLATE_NOOP("FullscreenUI", "Duck icon by icons8 (https://icons8.com/icon/74847/platforms.undefined.short-title)");
-TRANSLATE_NOOP("FullscreenUI", "DuckStation is a free and open-source simulator/emulator of the Sony PlayStation(TM) console, focusing on playability, speed, and long-term maintainability.");
+TRANSLATE_NOOP("FullscreenUI", "LibreStation is a free and open-source simulator/emulator of the Sony PlayStation(TM) console, focusing on playability, speed, and long-term maintainability.");
 TRANSLATE_NOOP("FullscreenUI", "Dump Replaceable VRAM Writes");
 TRANSLATE_NOOP("FullscreenUI", "Emulation Settings");
 TRANSLATE_NOOP("FullscreenUI", "Emulation Speed");
@@ -7410,7 +7410,7 @@ TRANSLATE_NOOP("FullscreenUI", "Error");
 TRANSLATE_NOOP("FullscreenUI", "Execution Mode");
 TRANSLATE_NOOP("FullscreenUI", "Exit");
 TRANSLATE_NOOP("FullscreenUI", "Exit And Save State");
-TRANSLATE_NOOP("FullscreenUI", "Exit DuckStation");
+TRANSLATE_NOOP("FullscreenUI", "Exit LibreStation");
 TRANSLATE_NOOP("FullscreenUI", "Exit Without Saving");
 TRANSLATE_NOOP("FullscreenUI", "Exits Big Picture mode, returning to the desktop interface.");
 TRANSLATE_NOOP("FullscreenUI", "FMV Chroma Smoothing");
@@ -7511,7 +7511,7 @@ TRANSLATE_NOOP("FullscreenUI", "Login token generated on {}");
 TRANSLATE_NOOP("FullscreenUI", "Logout");
 TRANSLATE_NOOP("FullscreenUI", "Logs BIOS calls to printf(). Not all games contain debugging messages.");
 TRANSLATE_NOOP("FullscreenUI", "Logs in to RetroAchievements.");
-TRANSLATE_NOOP("FullscreenUI", "Logs messages to duckstation.log in the user directory.");
+TRANSLATE_NOOP("FullscreenUI", "Logs messages to librestation.log in the user directory.");
 TRANSLATE_NOOP("FullscreenUI", "Logs messages to the console window.");
 TRANSLATE_NOOP("FullscreenUI", "Logs messages to the debug console where supported.");
 TRANSLATE_NOOP("FullscreenUI", "Logs out of RetroAchievements.");
@@ -7806,9 +7806,9 @@ TRANSLATE_NOOP("FullscreenUI", "Value: {} | Default: {} | Minimum: {} | Maximum:
 TRANSLATE_NOOP("FullscreenUI", "Vertex Cache");
 TRANSLATE_NOOP("FullscreenUI", "Vertical Sync (VSync)");
 TRANSLATE_NOOP("FullscreenUI", "WARNING: Your game is still saving to the memory card. Continuing to {0} may IRREVERSIBLY DESTROY YOUR MEMORY CARD. We recommend resuming your game and waiting 5 seconds for it to finish saving.\n\nDo you want to {0} anyway?");
-TRANSLATE_NOOP("FullscreenUI", "When enabled and logged in, DuckStation will scan for achievements on startup.");
-TRANSLATE_NOOP("FullscreenUI", "When enabled, DuckStation will assume all achievements are locked and not send any unlock notifications to the server.");
-TRANSLATE_NOOP("FullscreenUI", "When enabled, DuckStation will list achievements from unofficial sets. These achievements are not tracked by RetroAchievements.");
+TRANSLATE_NOOP("FullscreenUI", "When enabled and logged in, LibreStation will scan for achievements on startup.");
+TRANSLATE_NOOP("FullscreenUI", "When enabled, LibreStation will assume all achievements are locked and not send any unlock notifications to the server.");
+TRANSLATE_NOOP("FullscreenUI", "When enabled, LibreStation will list achievements from unofficial sets. These achievements are not tracked by RetroAchievements.");
 TRANSLATE_NOOP("FullscreenUI", "When enabled, each session will behave as if no achievements have been unlocked.");
 TRANSLATE_NOOP("FullscreenUI", "When enabled, memory cards and controllers will be overwritten when save states are loaded.");
 TRANSLATE_NOOP("FullscreenUI", "When enabled, the minimum supported output latency will be used for the host API.");

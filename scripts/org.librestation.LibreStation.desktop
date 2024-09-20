@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=LibreStation
+GenericName=PlayStation Emulator
+Comment=PlayStation emulator
+Icon=org.librestation.LibreStation
+TryExec=librestation-qt
+Exec=librestation-qt %f
+Categories=Game;Emulator;Qt;

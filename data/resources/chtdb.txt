@@ -1,5 +1,5 @@
 ;*******************************************************************************
-;Duckstation Cheat File
+;LibreStation Cheat File
 ;**********************
 ;
 ; To edit this file I recommend Notepad++ and set up a user defined language
@@ -8,7 +8,7 @@
 ;1. Start any comment lines with a semi-colon, this can be useful to split up
 ;   sections of cheats to improve readability as well as adding comments to
 ;   aid in understanding of the cheats. These comments do not appear in
-;   Duckstation so remember to keep explanations in cheats for users. Try to
+;   LibreStation so remember to keep explanations in cheats for users. Try to
 ;   keep comment lines under 80 characters
 ;
 ;2. Cheat Naming conventions for multiplayer games is 'Px Cheat Description'
@@ -273,7 +273,7 @@
 ;  ****************
 ;  These are only needed on hardware when you can't enable & disable codes after
 ;  the game has started without the use of delays or global jokers. They are
-;  supported by Duckstation but ideally dont use them if you can help it.
+;  supported by LibreStation but ideally dont use them if you can help it.
 ;* C1XXXXXX YYYY - Activate Codes On Delay
 ;
 ;  Register Code Types

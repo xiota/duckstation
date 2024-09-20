@@ -3320,7 +3320,7 @@ void Achievements::SwitchToRAIntegration()
 
 void Achievements::RAIntegration::InitializeRAIntegration(void* main_window_handle)
 {
-  RA_InitClient((HWND)main_window_handle, "DuckStation", g_scm_tag_str);
+  RA_InitClient((HWND)main_window_handle, "LibreStation", g_scm_tag_str);
   RA_SetUserAgentDetail(Host::GetHTTPUserAgent().c_str());
 
   RA_InstallSharedFunctions(RACallbackIsActive, RACallbackCauseUnpause, RACallbackCausePause, RACallbackRebuildMenu,

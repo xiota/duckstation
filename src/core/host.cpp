@@ -265,7 +265,7 @@ void Host::Internal::SetInputSettingsLayer(SettingsInterface* sif, std::unique_l
 
 std::string Host::GetHTTPUserAgent()
 {
-  return fmt::format("DuckStation for {} ({}) {}", TARGET_OS_STR, CPU_ARCH_STR, g_scm_tag_str);
+  return fmt::format("LibreStation for {} ({}) {}", TARGET_OS_STR, CPU_ARCH_STR, g_scm_tag_str);
 }
 
 bool Host::CreateGPUDevice(RenderAPI api, Error* error)

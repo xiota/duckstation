@@ -7,7 +7,7 @@ if [[ $# -lt 1 ]]; then
 	exit 1
 fi
 
-APPID="org.duckstation.DuckStation"
+APPID="org.librestation.LibreStation"
 OUTDIR=$(realpath "$1")
 OUTFILE="${OUTDIR}/${APPID}.metainfo.xml"
 

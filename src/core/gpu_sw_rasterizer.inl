@@ -740,7 +740,7 @@ static void DrawLine(const GPUBackendDrawLineCommand* cmd, const GPUBackendDrawL
   }
 }
 
-// DDA triangle rasterization algorithm originally from Mednafen, rewritten and vectorized for DuckStation.
+// DDA triangle rasterization algorithm originally from Mednafen, rewritten and vectorized for LibreStation.
 namespace {
 static constexpr u32 ATTRIB_SHIFT = 12;
 static constexpr u32 ATTRIB_POST_SHIFT = 12;

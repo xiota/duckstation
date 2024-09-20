@@ -56,8 +56,8 @@ static const rc_disallowed_setting_t _rc_disallowed_dosbox_pure_settings[] = {
   { NULL, NULL }
 };
 
-static const rc_disallowed_setting_t _rc_disallowed_duckstation_settings[] = {
-  { "duckstation_CDROM.LoadImagePatches", "true" },
+static const rc_disallowed_setting_t _rc_disallowed_librestation_settings[] = {
+  { "librestation_CDROM.LoadImagePatches", "true" },
   { NULL, NULL }
 };
 
@@ -156,7 +156,7 @@ static const rc_disallowed_core_settings_t rc_disallowed_core_settings[] = {
   { "cap32", _rc_disallowed_cap32_settings },
   { "dolphin-emu", _rc_disallowed_dolphin_settings },
   { "DOSBox-pure", _rc_disallowed_dosbox_pure_settings },
-  { "DuckStation", _rc_disallowed_duckstation_settings },
+  { "LibreStation", _rc_disallowed_librestation_settings },
   { "ecwolf", _rc_disallowed_ecwolf_settings },
   { "FCEUmm", _rc_disallowed_fceumm_settings },
   { "FinalBurn Neo", _rc_disallowed_fbneo_settings },

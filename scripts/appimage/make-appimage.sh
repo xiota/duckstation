@@ -42,7 +42,7 @@ function retry_command {
 }
 
 if [ "$#" -ne 4 ]; then
-    echo "Syntax: $0 <path to duckstation directory> <path to build directory> <deps prefix> <output name>"
+    echo "Syntax: $0 <path to librestation directory> <path to build directory> <deps prefix> <output name>"
     exit 1
 fi
 
@@ -51,8 +51,8 @@ BUILDDIR=$2
 DEPSDIR=$3
 NAME=$4
 
-BINARY=duckstation-qt
-APPDIRNAME=DuckStation.AppDir
+BINARY=librestation-qt
+APPDIRNAME=LibreStation.AppDir
 STRIP=strip
 
 declare -a MANUAL_LIBS=(
@@ -87,12 +87,12 @@ APPIMAGERUNTIME=./runtime-x86_64
 PATCHELF=patchelf
 
 if [ ! -f "$LINUXDEPLOY" ]; then
-	retry_command wget -O "$LINUXDEPLOY" https://github.com/stenzek/duckstation-ext-qt-minimal/releases/download/linux/linuxdeploy-x86_64.AppImage
+	retry_command wget -O "$LINUXDEPLOY" https://github.com/stenzek/librestation-ext-qt-minimal/releases/download/linux/linuxdeploy-x86_64.AppImage
 	chmod +x "$LINUXDEPLOY"
 fi
 
 if [ ! -f "$LINUXDEPLOY_PLUGIN_QT" ]; then
-	retry_command wget -O "$LINUXDEPLOY_PLUGIN_QT" https://github.com/stenzek/duckstation-ext-qt-minimal/releases/download/linux/linuxdeploy-plugin-qt-x86_64.AppImage
+	retry_command wget -O "$LINUXDEPLOY_PLUGIN_QT" https://github.com/stenzek/librestation-ext-qt-minimal/releases/download/linux/linuxdeploy-plugin-qt-x86_64.AppImage
 	chmod +x "$LINUXDEPLOY_PLUGIN_QT"
 fi
 
@@ -143,9 +143,9 @@ EXTRA_PLATFORM_PLUGINS="libqwayland-egl.so;libqwayland-generic.so" \
 DEPLOY_PLATFORM_THEMES="1" \
 QMAKE="$DEPSDIR/bin/qmake" \
 NO_STRIP="1" \
-$LINUXDEPLOY --plugin qt --appdir="$OUTDIR" --executable="$BUILDDIR/bin/duckstation-qt" ${EXTRA_LIBS_ARGS[@]} \
---desktop-file="$ROOTDIR/scripts/org.duckstation.DuckStation.desktop" \
---icon-file="$ROOTDIR/scripts/org.duckstation.DuckStation.png" \
+$LINUXDEPLOY --plugin qt --appdir="$OUTDIR" --executable="$BUILDDIR/bin/librestation-qt" ${EXTRA_LIBS_ARGS[@]} \
+--desktop-file="$ROOTDIR/scripts/org.librestation.LibreStation.desktop" \
+--icon-file="$ROOTDIR/scripts/org.librestation.LibreStation.png" \
 
 echo "Copying resources into AppDir..."
 cp -a "$BUILDDIR/bin/resources" "$OUTDIR/usr/bin"

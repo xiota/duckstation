@@ -405,7 +405,7 @@ std::optional<BIOS::Image> BIOS::FindBIOSImageInDirectory(ConsoleRegion region, 
 #ifndef __ANDROID__
     Error::SetStringFmt(
       error,
-      TRANSLATE_FS("System", "No BIOS image found for {} region.\n\nDuckStation requires a PS1 or PS2 BIOS in order to "
+      TRANSLATE_FS("System", "No BIOS image found for {} region.\n\nLibreStation requires a PS1 or PS2 BIOS in order to "
                              "run.\n\nFor legal reasons, you *must* obtain a BIOS from an actual PS1 unit that you own "
                              "(borrowing doesn't count).\n\nOnce dumped, this BIOS image should be placed in the bios "
                              "folder within the data directory (Tools Menu -> Open Data Directory)."),

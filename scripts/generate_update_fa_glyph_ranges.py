@@ -6,7 +6,7 @@ import os
 import glob
 import re
 
-#src_file = "src/duckstation-qt/qttranslations.cpp"
+#src_file = "src/librestation-qt/qttranslations.cpp"
 src_dir = os.path.join(os.path.dirname(__file__), "..", "src")
 fa_file = os.path.join(os.path.dirname(__file__), "..", "dep", "imgui", "include", "IconsFontAwesome5.h")
 pf_file = os.path.join(os.path.dirname(__file__), "..", "dep", "imgui", "include", "IconsPromptFont.h")

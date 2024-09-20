@@ -140,9 +140,9 @@ bool PINEServer::Initialize(u16 slot)
 
   std::string socket_path;
   if (slot != Settings::DEFAULT_PINE_SLOT)
-    socket_path = fmt::format("{}/duckstation.sock.{}", runtime_dir, slot);
+    socket_path = fmt::format("{}/librestation.sock.{}", runtime_dir, slot);
   else
-    socket_path = fmt::format("{}/duckstation.sock", runtime_dir);
+    socket_path = fmt::format("{}/librestation.sock", runtime_dir);
 
   // we unlink the socket so that when releasing this thread the socket gets
   // freed even if we didn't close correctly the loop
@@ -445,7 +445,7 @@ bool PINEServer::PINESocket::HandleCommand(IPCCommand command, BinarySpanReader 
 
     case MsgVersion:
     {
-      const TinyString version = TinyString::from_format("DuckStation {}", g_scm_tag_str);
+      const TinyString version = TinyString::from_format("LibreStation {}", g_scm_tag_str);
       if (!BeginReply(reply, version.length() + 1)) [[unlikely]]
         return false;
 

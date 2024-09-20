@@ -57,7 +57,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
       shell: cmd
       run: |
-        echo #define SCM_RELEASE_ASSET "duckstation-windows-x64-release.zip" >> src/scmversion/tag.h
+        echo #define SCM_RELEASE_ASSET "librestation-windows-x64-release.zip" >> src/scmversion/tag.h
         echo #define SCM_RELEASE_TAGS {"latest", "preview"} >> src/scmversion/tag.h
         echo #define SCM_RELEASE_TAG "preview" >> src/scmversion/tag.h
 
@@ -65,7 +65,7 @@ jobs:
       if: github.ref == 'refs/heads/dev'
       shell: cmd
       run: |
-        echo #define SCM_RELEASE_ASSET "duckstation-windows-x64-release.zip" >> src/scmversion/tag.h
+        echo #define SCM_RELEASE_ASSET "librestation-windows-x64-release.zip" >> src/scmversion/tag.h
         echo #define SCM_RELEASE_TAGS {"latest", "preview"} >> src/scmversion/tag.h
         echo #define SCM_RELEASE_TAG "latest" >> src/scmversion/tag.h
 
@@ -75,18 +75,18 @@ jobs:
         cd src\scmversion
         call update_rc_version.bat
         cd ..\..
-        git update-index --assume-unchanged src/duckstation-qt/duckstation-qt.rc
+        git update-index --assume-unchanged src/librestation-qt/librestation-qt.rc
 
     - name: Compile x64 release build
       shell: cmd
       run: |
         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-        msbuild duckstation.sln -t:Build -p:Platform=x64;Configuration=ReleaseLTCG-Clang
+        msbuild librestation.sln -t:Build -p:Platform=x64;Configuration=ReleaseLTCG-Clang
 
     - name: Create x64 symbols archive
       shell: cmd
       run: |
-        "C:\Program Files\7-Zip\7z.exe" a -r duckstation-windows-x64-release-symbols.zip ./bin/x64/*.pdb
+        "C:\Program Files\7-Zip\7z.exe" a -r librestation-windows-x64-release-symbols.zip ./bin/x64/*.pdb
 
     - name: Remove extra bloat before archiving
       shell: cmd
@@ -96,13 +96,13 @@ jobs:
     - name: Create x64 release archive
       shell: cmd
       run: |
-        "C:\Program Files\7-Zip\7z.exe" a -r duckstation-windows-x64-release.zip ./bin/x64/*
+        "C:\Program Files\7-Zip\7z.exe" a -r librestation-windows-x64-release.zip ./bin/x64/*
 
     - name: Upload x64 release artifact
       uses: actions/upload-artifact@v4.3.3
       with:
         name: "windows"
-        path: "duckstation-windows-x64-release*.zip"
+        path: "librestation-windows-x64-release*.zip"
 
 
   windows-arm64-build:
@@ -144,7 +144,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
       shell: cmd
       run: |
-        echo #define SCM_RELEASE_ASSET "duckstation-windows-arm64-release.zip" >> src/scmversion/tag.h
+        echo #define SCM_RELEASE_ASSET "librestation-windows-arm64-release.zip" >> src/scmversion/tag.h
         echo #define SCM_RELEASE_TAGS {"latest", "preview"} >> src/scmversion/tag.h
         echo #define SCM_RELEASE_TAG "preview" >> src/scmversion/tag.h
 
@@ -152,7 +152,7 @@ jobs:
       if: github.ref == 'refs/heads/dev'
       shell: cmd
       run: |
-        echo #define SCM_RELEASE_ASSET "duckstation-windows-arm64-release.zip" >> src/scmversion/tag.h
+        echo #define SCM_RELEASE_ASSET "librestation-windows-arm64-release.zip" >> src/scmversion/tag.h
         echo #define SCM_RELEASE_TAGS {"latest", "preview"} >> src/scmversion/tag.h
         echo #define SCM_RELEASE_TAG "latest" >> src/scmversion/tag.h
 
@@ -162,18 +162,18 @@ jobs:
         cd src\scmversion
         call update_rc_version.bat
         cd ..\..
-        git update-index --assume-unchanged src/duckstation-qt/duckstation-qt.rc
+        git update-index --assume-unchanged src/librestation-qt/librestation-qt.rc
 
     - name: Compile arm64 release build
       shell: cmd
       run: |
         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64_arm64
-        msbuild duckstation.sln -t:Build -p:Platform=ARM64;Configuration=ReleaseLTCG-Clang
+        msbuild librestation.sln -t:Build -p:Platform=ARM64;Configuration=ReleaseLTCG-Clang
 
     - name: Create arm64 symbols archive
       shell: cmd
       run: |
-        "C:\Program Files\7-Zip\7z.exe" a -r duckstation-windows-arm64-release-symbols.zip ./bin/ARM64/*.pdb
+        "C:\Program Files\7-Zip\7z.exe" a -r librestation-windows-arm64-release-symbols.zip ./bin/ARM64/*.pdb
 
     - name: Remove extra bloat before archiving
       shell: cmd
@@ -184,13 +184,13 @@ jobs:
     - name: Create arm64 release archive
       shell: cmd
       run: |
-        "C:\Program Files\7-Zip\7z.exe" a -r duckstation-windows-arm64-release.zip ./bin/ARM64/*
+        "C:\Program Files\7-Zip\7z.exe" a -r librestation-windows-arm64-release.zip ./bin/ARM64/*
 
     - name: Upload arm64 release artifact
       uses: actions/upload-artifact@v4.3.3
       with:
         name: "windows-arm64"
-        path: "duckstation-windows-arm64-release*.zip"
+        path: "librestation-windows-arm64-release*.zip"
 
 
   linux-build:
@@ -235,14 +235,14 @@ jobs:
     - name: Tag as preview build
       if: github.ref == 'refs/heads/master'
       run: |
-        echo '#define SCM_RELEASE_ASSET "DuckStation-x64.AppImage"' >> src/scmversion/tag.h
+        echo '#define SCM_RELEASE_ASSET "LibreStation-x64.AppImage"' >> src/scmversion/tag.h
         echo '#define SCM_RELEASE_TAGS {"latest", "preview"}' >> src/scmversion/tag.h
         echo '#define SCM_RELEASE_TAG "preview"' >> src/scmversion/tag.h
 
     - name: Tag as dev build
       if: github.ref == 'refs/heads/dev'
       run: |
-        echo '#define SCM_RELEASE_ASSET "DuckStation-x64.AppImage"' >> src/scmversion/tag.h
+        echo '#define SCM_RELEASE_ASSET "LibreStation-x64.AppImage"' >> src/scmversion/tag.h
         echo '#define SCM_RELEASE_TAGS {"latest", "preview"}' >> src/scmversion/tag.h
         echo '#define SCM_RELEASE_TAG "latest"' >> src/scmversion/tag.h
 
@@ -255,13 +255,13 @@ jobs:
         cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON -DCMAKE_PREFIX_PATH="$HOME/deps" -DCMAKE_C_COMPILER=clang-17 -DCMAKE_CXX_COMPILER=clang++-17 -DCMAKE_EXE_LINKER_FLAGS_INIT="-fuse-ld=lld" -DCMAKE_MODULE_LINKER_FLAGS_INIT="-fuse-ld=lld" -DCMAKE_SHARED_LINKER_FLAGS_INIT="-fuse-ld=lld" ..
         cmake --build . --parallel
         cd ..
-        scripts/appimage/make-appimage.sh $(realpath .) $(realpath ./build) $HOME/deps DuckStation-x64
+        scripts/appimage/make-appimage.sh $(realpath .) $(realpath ./build) $HOME/deps LibreStation-x64
 
     - name: Upload Qt AppImage
       uses: actions/upload-artifact@v4.3.3
       with:
         name: "linux-x64-appimage-qt"
-        path: "DuckStation-x64.AppImage"
+        path: "LibreStation-x64.AppImage"
 
 
   linux-flatpak-build:
@@ -288,20 +288,20 @@ jobs:
     - name: Generate AppStream XML
       run: |
         scripts/generate-metainfo.sh scripts/flatpak
-        cat scripts/flatpak/org.duckstation.DuckStation.metainfo.xml
+        cat scripts/flatpak/org.librestation.LibreStation.metainfo.xml
 
     - name: Validate AppStream XML
-      run: flatpak-builder-lint appstream scripts/flatpak/org.duckstation.DuckStation.metainfo.xml
+      run: flatpak-builder-lint appstream scripts/flatpak/org.librestation.LibreStation.metainfo.xml
 
     - name: Validate manifest
-      run: flatpak-builder-lint manifest scripts/flatpak/org.duckstation.DuckStation.yaml
+      run: flatpak-builder-lint manifest scripts/flatpak/org.librestation.LibreStation.yaml
 
     - name: Build Flatpak
       uses: flathub-infra/flatpak-github-actions/flatpak-builder@23796715b3dfa4c86ddf50cf29c3cc8b3c82dca8
       with:
-        bundle: duckstation-x64.flatpak
+        bundle: librestation-x64.flatpak
         upload-artifact: false
-        manifest-path: scripts/flatpak/org.duckstation.DuckStation.yaml
+        manifest-path: scripts/flatpak/org.librestation.LibreStation.yaml
         arch: x86_64
         build-bundle: true
         verbose: true
@@ -328,7 +328,7 @@ jobs:
       uses: actions/upload-artifact@v4.3.3
       with:
         name: "linux-flatpak"
-        path: "duckstation-x64.flatpak"
+        path: "librestation-x64.flatpak"
 
 
   macos-build:
@@ -365,14 +365,14 @@ jobs:
     - name: Tag as preview build
       if: github.ref == 'refs/heads/master'
       run: |
-        echo '#define SCM_RELEASE_ASSET "duckstation-mac-release.zip"' >> src/scmversion/tag.h
+        echo '#define SCM_RELEASE_ASSET "librestation-mac-release.zip"' >> src/scmversion/tag.h
         echo '#define SCM_RELEASE_TAGS {"latest", "preview"}' >> src/scmversion/tag.h
         echo '#define SCM_RELEASE_TAG "preview"' >> src/scmversion/tag.h
 
     - name: Tag as dev build
       if: github.ref == 'refs/heads/dev'
       run: |
-        echo '#define SCM_RELEASE_ASSET "duckstation-mac-release.zip"' >> src/scmversion/tag.h
+        echo '#define SCM_RELEASE_ASSET "librestation-mac-release.zip"' >> src/scmversion/tag.h
         echo '#define SCM_RELEASE_TAGS {"latest", "preview"}' >> src/scmversion/tag.h
         echo '#define SCM_RELEASE_TAG "latest"' >> src/scmversion/tag.h
 
@@ -384,15 +384,15 @@ jobs:
         export MACOSX_DEPLOYMENT_TARGET=11.0
         cmake -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DCMAKE_BUILD_TYPE=Release -DENABLE_OPENGL=OFF -DCMAKE_PREFIX_PATH="$HOME/deps" -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON -G Ninja ..
         cmake --build . --parallel
-        mv bin/DuckStation.app .
-        codesign -s - --deep -f -v DuckStation.app
-        zip -r duckstation-mac-release.zip DuckStation.app/
+        mv bin/LibreStation.app .
+        codesign -s - --deep -f -v LibreStation.app
+        zip -r librestation-mac-release.zip LibreStation.app/
 
     - name: Upload macOS .app
       uses: actions/upload-artifact@v4.3.3
       with:
         name: "macos"
-        path: "build/duckstation-mac-release.zip"
+        path: "build/librestation-mac-release.zip"
 
 
   create-release:
@@ -417,13 +417,13 @@ jobs:
           prerelease: true
           title: "Latest Preview Build"
           files: |
-            ./artifacts/windows/duckstation-windows-x64-release.zip
-            ./artifacts/windows/duckstation-windows-x64-release-symbols.zip
-            ./artifacts/windows-arm64/duckstation-windows-arm64-release.zip
-            ./artifacts/windows-arm64/duckstation-windows-arm64-release-symbols.zip
-            ./artifacts/linux-x64-appimage-qt/DuckStation-x64.AppImage
-            ./artifacts/linux-flatpak/duckstation-x64.flatpak
-            ./artifacts/macos/duckstation-mac-release.zip
+            ./artifacts/windows/librestation-windows-x64-release.zip
+            ./artifacts/windows/librestation-windows-x64-release-symbols.zip
+            ./artifacts/windows-arm64/librestation-windows-arm64-release.zip
+            ./artifacts/windows-arm64/librestation-windows-arm64-release-symbols.zip
+            ./artifacts/linux-x64-appimage-qt/LibreStation-x64.AppImage
+            ./artifacts/linux-flatpak/librestation-x64.flatpak
+            ./artifacts/macos/librestation-mac-release.zip
 
       - name: Create dev release
         if: github.ref == 'refs/heads/dev'
@@ -434,11 +434,11 @@ jobs:
           prerelease: false
           title: "Latest Rolling Release"
           files: |
-            ./artifacts/windows/duckstation-windows-x64-release.zip
-            ./artifacts/windows/duckstation-windows-x64-release-symbols.zip
-            ./artifacts/windows-arm64/duckstation-windows-arm64-release.zip
-            ./artifacts/windows-arm64/duckstation-windows-arm64-release-symbols.zip
-            ./artifacts/linux-x64-appimage-qt/DuckStation-x64.AppImage
-            ./artifacts/linux-flatpak/duckstation-x64.flatpak
-            ./artifacts/macos/duckstation-mac-release.zip
+            ./artifacts/windows/librestation-windows-x64-release.zip
+            ./artifacts/windows/librestation-windows-x64-release-symbols.zip
+            ./artifacts/windows-arm64/librestation-windows-arm64-release.zip
+            ./artifacts/windows-arm64/librestation-windows-arm64-release-symbols.zip
+            ./artifacts/linux-x64-appimage-qt/LibreStation-x64.AppImage
+            ./artifacts/linux-flatpak/librestation-x64.flatpak
+            ./artifacts/macos/librestation-mac-release.zip
 

@@ -870,7 +870,7 @@ void Settings::UpdateLogSettings()
 
   if (log_to_file)
   {
-    Log::SetFileOutputParams(log_to_file, Path::Combine(EmuFolders::DataRoot, "duckstation.log").c_str(),
+    Log::SetFileOutputParams(log_to_file, Path::Combine(EmuFolders::DataRoot, "librestation.log").c_str(),
                              log_timestamps);
   }
   else
