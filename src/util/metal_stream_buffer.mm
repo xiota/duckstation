@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2023 Connor McLaughlin <stenzek@gmail.com>
-// SPDX-License-Identifier: (GPL-3.0 OR CC-BY-NC-ND-4.0)
+// SPDX-License-Identifier: GPL-3.0-only
 
 #include "metal_stream_buffer.h"
 #include "metal_device.h"

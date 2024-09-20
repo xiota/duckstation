@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2021-2024 Connor McLaughlin <stenzek@gmail.com>
-// SPDX-License-Identifier: (GPL-3.0 OR CC-BY-NC-ND-4.0)
+// SPDX-License-Identifier: GPL-3.0-only
 
 // Win32 uses Fastjmp.asm, because MSVC doesn't support inline asm.
 #if !defined(_WIN32) || defined(_M_ARM64)
